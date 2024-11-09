@@ -59,16 +59,3 @@ class Model:
         return nx.number_connected_components(self._grafo)
 
 
-query
-select st1.id as st1, st2.id as st2, count(s.duration)
-from sighting s, state st1, state st2, neighbor n 
-where st1.Lat > 41
-and st1.Lng > -100
-and (s.state = st1.id or s.state = st2.id )
-and st2.Lat > 41
-and st2.Lng > -100
-and s.state = st2.id 
-and s.shape = "sphere"
-and n.state1 = st1.id
-and n.state2 = st2.id 
-group by st1.id, st2.id
